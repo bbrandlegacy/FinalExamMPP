@@ -28,9 +28,4 @@ public class Functional_Interfaces {
     static BiFunction<String,String,String> nameCombine = (first, last) -> first+" "+last;
 
     static BiFunction<Double,Double,String> biCombine = (a, b) -> a+"-"+b;
-
-
-    public static void main(String[] args) {
-        function.apply("message");
-    }
 }
