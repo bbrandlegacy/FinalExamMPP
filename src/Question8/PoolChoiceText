@@ -1,0 +1,21 @@
+a fixed pool does not guarantee the order of transmission due to it parallel nature
+where as cached create a new thread as needed and may reuse threads that arent in use now
+200 names and cache will have to create threads as it goes potentially and handle reusing
+threads in its own logic. where as a fixed thread pool would run in parallel using all the
+threads available.
+
+I would choose cachePool with a limiter for small staff endpoint counts and if its a drill
+that has a condition for a large size i would swap to a fixed approach for maximum speed
+without overloading the cpu
+
+ExecutorService executor = Executor.newCachedThreadPool();
+//assume that sendAlert
+for (String staff : staffList){
+    for(1=0, i<20, 1++){
+        executor.execute(()->sendAlert(staff));
+        Thread.sleep(2000);
+    }
+}
+
+cached thread pool will just keep creating threads for the operation of the task at hand
+you can call it greedy. where as fixed thread pool will maintain its size
